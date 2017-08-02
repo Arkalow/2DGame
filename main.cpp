@@ -16,7 +16,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "Collision");
     window.setFramerateLimit(60);
     window.setPosition(sf::Vector2i(192, 0));
-
+    //import des textures
     texture[0].loadFromFile("image/platform/png/Tiles/0.png");
     texture[1].loadFromFile("image/platform/png/Tiles/1.png");
     texture[2].loadFromFile("image/platform/png/Tiles/2.png");
@@ -43,7 +43,7 @@ int main()
     lvl.init();
 
     
-    Cube a(200, 300);
+    Cube a(200, 200);
     window.clear();
     while (window.isOpen())
     {
@@ -57,11 +57,17 @@ int main()
         lvl.updateBackground(a.X(), a.Y());
 
         a.update();
+        if(lvl.test(a.X(), a.Y() + 1) == false){
+            a.Down();
+        }else{
+            // a.fall();
+        }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-            a.Up();
-        }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+            if(lvl.test(a.X(), a.Y()+1) == false)
+                a.Up();
+        }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
             a.Left();
-        }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
             a.Right();
         }
         window.clear();

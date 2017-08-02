@@ -10,6 +10,7 @@ using namespace std;
     int screenHEIGHT;
     int screenWIDTH;
     int BLOCK; 
+    float g = 9.81;
     sf::Texture texture[18];
 #else    
     extern int HEIGHT;
@@ -17,5 +18,6 @@ using namespace std;
     extern int screenHEIGHT;
     extern int screenWIDTH;
     extern int BLOCK; 
+    extern float g;
     extern sf::Texture texture[18];
 #endif
