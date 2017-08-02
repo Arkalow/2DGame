@@ -58,3 +58,9 @@ void Cube::Right(){
     x0 = x;
     x += vitesse;
 }
+int Cube::X(){
+    return x;
+}
+int Cube::Y(){
+    return y;
+}

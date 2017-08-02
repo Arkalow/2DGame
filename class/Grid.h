@@ -1,5 +1,3 @@
-#ifndef GRID_H
-#define GRID_H
 using namespace std;
 
 class Grid
@@ -15,4 +13,3 @@ class Grid
         int C();
         int G(int, int);
 };
-#endif

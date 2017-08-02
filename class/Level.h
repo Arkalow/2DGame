@@ -1,5 +1,3 @@
-#ifndef LEVEL_H
-#define LEVEL_H
 using namespace std;
 
 class Level
@@ -20,4 +18,3 @@ class Level
         void init();
         bool test(int, int);
 };
-#endif

@@ -23,5 +23,7 @@ class Cube
         void Up();
         void Left();
         void Right();
+        int X();
+        int Y();
 };
 #endif
