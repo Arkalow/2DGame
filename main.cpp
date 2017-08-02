@@ -1,15 +1,14 @@
-//CONSTANTE
-float g = 9.81;
-
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <cstdlib>
-#include <math.h>
+#define VAR_GLOBALES
+#include "import.h"
 using namespace std;
-enum{Up, Left, Right};
 #include "class/Cube.h"
 int main()
 {
+    cout << "=========================================================================";
+    BLOCK = 32;
+    WIDTH = 2000;
+    screenHEIGHT = 600;
+    screenWIDTH = 800;
     sf::RenderWindow window(sf::VideoMode(800, 600), "Collision");
     window.setFramerateLimit(60);
     window.setPosition(sf::Vector2i(192, 0));

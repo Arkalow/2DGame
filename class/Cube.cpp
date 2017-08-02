@@ -1,10 +1,6 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <cstdlib>
-#include <math.h>
-using namespace std;
-enum{Up, Left, Right};
+#include "../import.h"
 #include "Cube.h"
+float g = 9.81;
 Cube::Cube(){
     
 }
@@ -20,7 +16,6 @@ Cube::Cube(int x, int y){
     t = 0;
     x0 = x;
     y0 = y;
-    g = 9.98;
     f = g;
 }
 Cube::~Cube(){
@@ -45,7 +40,7 @@ void Cube::Up(){//Donne une impulion vers le haut
     vitesse = 3;
     amplitude = 90;
     angle = (-amplitude*M_PI)/180;
-    f = 10.1;
+    f = 10;
     t0 = t;
     y0 = y;
 }

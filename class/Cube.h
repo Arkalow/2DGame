@@ -1,3 +1,5 @@
+#ifndef CUBE_H
+#define CUBE_H
 class Cube
 {
     private:
@@ -11,7 +13,6 @@ class Cube
         int x0;
         int y0;
         float f;
-        float g;
     public:
         Cube(int, int);
         Cube();
@@ -23,3 +24,4 @@ class Cube
         void Left();
         void Right();
 };
+#endif
