@@ -1,4 +1,5 @@
 #include "../import.h"
+#include "Force.h"
 #include "Cube.h"
 Cube::Cube(){
     
@@ -9,17 +10,15 @@ Cube::Cube(int x, int y){
     form.setSize(sf::Vector2f(32, 32));
     form.setFillColor(sf::Color::Red);
     form.setPosition(x, y);
-    amplitude = 90;
-    angle = (-amplitude*M_PI)/180;
-    vitesse = 0;
-    t = 0;
-    t0 = 100;
-    x0 = x;
-    y0 = y;
-    f = g + 0.01;
+    
+    for(int i = 0; i < 5; i++){
+        forces[i] = NULL;
+    }
 }
 Cube::~Cube(){
-
+    for(int i = 0; i < 5; i++){
+        delete forces[i];
+    }
 }
 ostream& operator<<(ostream &os, Cube &c)
 { 
@@ -30,33 +29,21 @@ sf::RectangleShape Cube::Form(){
     return form;
 }
 void Cube::update(){
-
-    t++;
-    y = -0.5*(g-f)*(t - t0)*(t - t0 - 100) + vitesse * sin(angle) + y0;   
+    int tmpX = 0;
+    int tmpY = 0;
+    for(int i = 0; i < 5; i++){
+        if(forces[i] != NULL){
+            forces[i]->update();
+            tmpX += forces[i]->X();
+            tmpY += forces[i]->Y();
+            cout << i << " => x: " << tmpX << "| y: " << tmpY << endl;
+        }
+    }
     
+    x += tmpX;
+    y += tmpY;
+    // cout << "x: " << x << "| y: " << y<< endl;
     form.setPosition(x, y);
-}
-void Cube::Up(){//Donne une impulion vers le haut
-    vitesse = 1;
-    amplitude = 90;
-    angle = (-amplitude*M_PI)/180;
-    f = 9.99999;
-    t0 = t;
-    y0 = y;
-}
-void Cube::Left(){
-    vitesse = 1;
-    amplitude = 180;
-    angle = (-amplitude*M_PI)/180;
-    x0 = x;
-    x -= vitesse;
-}
-void Cube::Right(){
-    vitesse = 1;
-    amplitude = 0;
-    angle = (-amplitude*M_PI)/180;
-    x0 = x;
-    x += vitesse;
 }
 int Cube::X(){
     return x;
@@ -64,18 +51,19 @@ int Cube::X(){
 int Cube::Y(){
     return y;
 }
-void Cube::Down(){
-    vitesse = 0;
-    f = g;
-    t0 = t;
-    y0 = y;
+void Cube::addForce(Force * force){
+    for(int i = 0; i < 5; i++){
+        if(forces[i] == NULL){
+            forces[i] = force;
+            return;
+        }
+    }
 }
-void Cube::fall(){
-    amplitude = 90;
-    angle = (-amplitude*M_PI)/180;
-    vitesse = 0;
-    t0 = t + 100;
-    x0 = x;
-    y0 = y;
-    f = g + 0.01;
+void Cube::removeForce(Force * force){
+    for(int i = 0; i < 5; i++){
+        if(forces[i] == force){
+            forces[i] = NULL;
+            return;
+        }
+    }
 }

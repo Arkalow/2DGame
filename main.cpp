@@ -1,13 +1,14 @@
 #define VAR_GLOBALES
 #include "import.h"
 using namespace std;
+#include "class/Force.h"
 #include "class/Cube.h"
 #include "class/Platform.h"
 #include "class/Grid.h"
 #include "class/Level.h"
 int main()
 {
-    cout << "=========================================================================";
+    cout << "=========================================================================" << endl;
     BLOCK = 32;
     WIDTH = 2000;
     screenHEIGHT = 600;
@@ -44,6 +45,21 @@ int main()
 
     
     Cube a(200, 200);
+    Force * jump;
+    Force * ground;
+    Force * right;
+    Force * left;
+    Force * gravity;
+
+    jump = NULL;
+    ground = NULL;
+    right = new Force(a.X(), a.Y(), 0, float(0), float(0.01));
+    left = new Force(a.X(), a.Y(), 0, float(-0.01), float(0));
+    
+    gravity = new Force(a.X(), a.Y(), 0, float(0), float(0.01));
+    a.addForce(gravity);
+    
+
     window.clear();
     while (window.isOpen())
     {
@@ -58,18 +74,26 @@ int main()
 
         a.update();
         if(lvl.test(a.X(), a.Y() + 1) == false){
-            a.Down();
+            if(gravity != NULL){
+                a.removeForce(gravity);
+                gravity = NULL;
+            }
         }else{
-            // a.fall();
+            
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-            if(lvl.test(a.X(), a.Y()+1) == false)
-                a.Up();
+            if(lvl.test(a.X(), a.Y() + 1) == false){
+                if(jump == NULL){
+                    jump = new Force(a.X(), a.Y(), -40, float(0), float(0.03));
+                    a.addForce(jump);
+                }
+            }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-            a.Left();
+            // a.Left();
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            a.Right();
+            // a.Right();
         }
+        // cout << a<<endl;
         window.clear();
         window.draw(lvl.Background());
         for(int i = 0; i < lvl.NbPlatform(); i++){
