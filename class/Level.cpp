@@ -60,13 +60,13 @@ int Level::operator()(int x, int y){
 }
 bool Level::test(int x, int y){
     if(map->G(x/BLOCK, y/BLOCK) != 1){
-        if(x % BLOCK > 5 && y % BLOCK > 5){
+        if(x % BLOCK != 1 && y % BLOCK != 1){
             if(map->G(x/BLOCK + 1, y/BLOCK + 1) != 1 && map->G(x/BLOCK + 1, y/BLOCK) != 1 && map->G(x/BLOCK, y/BLOCK + 1) != 1)
                 return true;  
-        }else if(x % BLOCK > 5){
+        }else if(x % BLOCK != 1){
             if(map->G(x/BLOCK + 1, y/BLOCK) != 1)
                 return true;
-        }else if(y % BLOCK > 5){
+        }else if(y % BLOCK != 1){
             if(map->G(x/BLOCK, y/BLOCK + 1) != 1)
                 return true; 
         }else{

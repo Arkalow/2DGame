@@ -1,7 +1,8 @@
 #define VAR_GLOBALES
 #include "import.h"
+#include "class/Vecteur.h"
+#include "class/Physique.h"
 using namespace std;
-#include "class/Force.h"
 #include "class/Cube.h"
 #include "class/Platform.h"
 #include "class/Grid.h"
@@ -43,22 +44,17 @@ int main()
     Level lvl;
     lvl.init();
 
-    
     Cube a(200, 200);
-    Force * jump;
-    Force * ground;
-    Force * right;
-    Force * left;
-    Force * gravity;
+
+    Vecteur * gravity;
+    Vecteur * ground;
+    Vecteur * jump;
 
     jump = NULL;
     ground = NULL;
-    right = new Force(a.X(), a.Y(), 0, float(0), float(0.01));
-    left = new Force(a.X(), a.Y(), 0, float(-0.01), float(0));
-    
-    gravity = new Force(a.X(), a.Y(), 0, float(0), float(0.01));
+    gravity = new Vecteur(0, 4);
     a.addForce(gravity);
-    
+       
 
     window.clear();
     while (window.isOpen())
@@ -74,26 +70,28 @@ int main()
 
         a.update();
         if(lvl.test(a.X(), a.Y() + 1) == false){
-            if(gravity != NULL){
-                a.removeForce(gravity);
-                gravity = NULL;
+            if(ground == NULL){
+                ground = new Vecteur(0, -4);
+                a.addForce(ground);
+                a.setVitesseY(0);
             }
         }else{
-            
+            if(ground != NULL){
+                a.removeForce(ground);
+                ground = NULL;
+            }
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             if(lvl.test(a.X(), a.Y() + 1) == false){
-                if(jump == NULL){
-                    jump = new Force(a.X(), a.Y(), -40, float(0), float(0.03));
-                    a.addForce(jump);
-                }
+                a.setVitesseY(-50);
             }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-            // a.Left();
+            a.move(-3);
+
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            // a.Right();
+            a.move(-3);
         }
-        // cout << a<<endl;
+        // cout << a << endl;
         window.clear();
         window.draw(lvl.Background());
         for(int i = 0; i < lvl.NbPlatform(); i++){

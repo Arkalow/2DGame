@@ -5,7 +5,7 @@ class Cube
     private:
         int x, y;
         sf::RectangleShape form;
-        Force * forces[5];
+        Physique physique;
     public:
         Cube(int, int);
         Cube();
@@ -15,7 +15,9 @@ class Cube
         void update();
         int X();
         int Y();
-        void addForce(Force *);
-        void removeForce(Force *);
+        void addForce(Vecteur *);
+        void removeForce(Vecteur *);
+        void setVitesseX(float);
+        void setVitesseY(float);
 };
 #endif

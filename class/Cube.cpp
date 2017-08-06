@@ -1,24 +1,19 @@
 #include "../import.h"
-#include "Force.h"
+#include "Vecteur.h"
+#include "Physique.h"
 #include "Cube.h"
 Cube::Cube(){
     
 }
-Cube::Cube(int x, int y){
+Cube::Cube(int x, int y) : physique(){
     this->x = x;
     this->y = y;
     form.setSize(sf::Vector2f(32, 32));
     form.setFillColor(sf::Color::Red);
     form.setPosition(x, y);
-    
-    for(int i = 0; i < 5; i++){
-        forces[i] = NULL;
-    }
 }
 Cube::~Cube(){
-    for(int i = 0; i < 5; i++){
-        delete forces[i];
-    }
+
 }
 ostream& operator<<(ostream &os, Cube &c)
 { 
@@ -29,20 +24,10 @@ sf::RectangleShape Cube::Form(){
     return form;
 }
 void Cube::update(){
-    int tmpX = 0;
-    int tmpY = 0;
-    for(int i = 0; i < 5; i++){
-        if(forces[i] != NULL){
-            forces[i]->update();
-            tmpX += forces[i]->X();
-            tmpY += forces[i]->Y();
-            cout << i << " => x: " << tmpX << "| y: " << tmpY << endl;
-        }
-    }
-    
-    x += tmpX;
-    y += tmpY;
-    // cout << "x: " << x << "| y: " << y<< endl;
+    Vecteur position(0, 0);
+    position = physique.update();
+    x += position.X();
+    y += position.Y();
     form.setPosition(x, y);
 }
 int Cube::X(){
@@ -51,19 +36,15 @@ int Cube::X(){
 int Cube::Y(){
     return y;
 }
-void Cube::addForce(Force * force){
-    for(int i = 0; i < 5; i++){
-        if(forces[i] == NULL){
-            forces[i] = force;
-            return;
-        }
-    }
+void Cube::addForce(Vecteur * v){
+    physique.add(v);
 }
-void Cube::removeForce(Force * force){
-    for(int i = 0; i < 5; i++){
-        if(forces[i] == force){
-            forces[i] = NULL;
-            return;
-        }
-    }
+void Cube::removeForce(Vecteur * v){
+    physique.remove(v);
+}
+void Cube::setVitesseX(float value){
+    physique.setVitesseX(value);
+}
+void Cube::setVitesseY(float value){
+    physique.setVitesseY(value);
 }
