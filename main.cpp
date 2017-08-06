@@ -87,9 +87,15 @@ int main()
             }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
             a.move(-3);
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+                a.move(-3);
+            }
 
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            a.move(-3);
+            a.move(3);
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+                a.move(3);
+            }
         }
         // cout << a << endl;
         window.clear();

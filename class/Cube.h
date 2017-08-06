@@ -19,5 +19,6 @@ class Cube
         void removeForce(Vecteur *);
         void setVitesseX(float);
         void setVitesseY(float);
+        void move(int);
 };
 #endif

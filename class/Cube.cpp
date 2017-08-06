@@ -47,4 +47,6 @@ void Cube::setVitesseX(float value){
 }
 void Cube::setVitesseY(float value){
     physique.setVitesseY(value);
+}void Cube::move(int value){
+    x += value;
 }
