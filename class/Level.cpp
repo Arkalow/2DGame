@@ -10,7 +10,7 @@ Level::Level(){
 }
 void Level::init(){
     platform = new Platform[3];
-    platform[0].init(5, 4, 3, 1);
+    platform[0].init(3, 3, 3, 1);
     platform[2].init(9, 7, 3, 4);
     platform[1].init(2, 5, 5, 4);
     nbPlatform = 3;

@@ -1,16 +1,16 @@
-#ifndef CUBE_H
-#define CUBE_H
-class Cube
+#ifndef Personnage_H
+#define Personnage_H
+class Personnage
 {
     private:
         int x, y;
         sf::RectangleShape form;
         Physique physique;
     public:
-        Cube(int, int);
-        Cube();
-        ~Cube();
-        friend ostream& operator<<(ostream&, Cube&);
+        Personnage(int, int);
+        Personnage();
+        ~Personnage();
+        friend ostream& operator<<(ostream&, Personnage&);
         sf::RectangleShape Form();
         Vecteur update();
         int X();

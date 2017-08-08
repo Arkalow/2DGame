@@ -1,12 +1,14 @@
 #define VAR_GLOBALES
 #include "import.h"
+
 #include "class/Vecteur.h"
 #include "class/Physique.h"
-using namespace std;
-#include "class/Cube.h"
+
+#include "class/Personnage.h"
 #include "class/Platform.h"
 #include "class/Grid.h"
 #include "class/Level.h"
+
 int main()
 {
     cout << "=========================================================================" << endl;
@@ -44,7 +46,8 @@ int main()
     Level lvl;
     lvl.init();
 
-    Cube a(8*BLOCK, 3*BLOCK);
+    Personnage a(8*BLOCK, 3*BLOCK);
+    int speed = 5;
 
     Vecteur * gravity;
     Vecteur * ground;
@@ -109,20 +112,20 @@ int main()
                 a.setVitesseY(-80);
             }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-            if(lvl.test(a.X() - 3, a.Y()) == false){
-                a.Left(3);
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-                    a.Left(3);
-                }
+            if(lvl.test(a.X() - speed, a.Y()) == false){
+                a.Left(speed);
             }
 
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            if(lvl.test(a.X() + 3, a.Y()) == false){
-                a.Right(3);
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-                    a.Right(3);
-                }
+            if(lvl.test(a.X() + speed, a.Y()) == false){
+                a.Right(speed);
+                
             }
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+            speed = 10;
+        }else{
+            speed = 5;
         }
         window.clear();
         window.draw(lvl.Background());

@@ -1,59 +1,59 @@
 #include "../import.h"
 #include "Vecteur.h"
 #include "Physique.h"
-#include "Cube.h"
-Cube::Cube(){
+#include "Personnage.h"
+Personnage::Personnage(){
     
 }
-Cube::Cube(int x, int y) : physique(){
+Personnage::Personnage(int x, int y) : physique(){
     this->x = x;
     this->y = y;
     form.setSize(sf::Vector2f(32, 32));
     form.setFillColor(sf::Color::Red);
     form.setPosition(x, y);
 }
-Cube::~Cube(){
+Personnage::~Personnage(){
 
 }
-ostream& operator<<(ostream &os, Cube &c)
+ostream& operator<<(ostream &os, Personnage &c)
 { 
     os << "x: " << c.x << "| y: " << c.y << "\n";
     return os;
 }
-sf::RectangleShape Cube::Form(){
+sf::RectangleShape Personnage::Form(){
     return form;
 }
-Vecteur Cube::update(){
+Vecteur Personnage::update(){
     Vecteur position(0, 0);
     position = physique.update();
     return position;
 }
-int Cube::X(){
+int Personnage::X(){
     return x;
 }
-int Cube::Y(){
+int Personnage::Y(){
     return y;
 }
-void Cube::addForce(Vecteur * v){
+void Personnage::addForce(Vecteur * v){
     physique.add(v);
 }
-void Cube::removeForce(Vecteur * v){
+void Personnage::removeForce(Vecteur * v){
     physique.remove(v);
 }
-void Cube::setVitesseX(float value){
+void Personnage::setVitesseX(float value){
     physique.setVitesseX(value);
 }
-void Cube::setVitesseY(float value){
+void Personnage::setVitesseY(float value){
     physique.setVitesseY(value);
 }
-Vecteur Cube::move(float deplacementX, float deplacementY){
+Vecteur Personnage::move(float deplacementX, float deplacementY){
     x += deplacementX;
     y += deplacementY;
     form.setPosition(x, y);
 }
-void Cube::Left(int value){
+void Personnage::Left(int value){
     x -= value;
 }
-void Cube::Right(int value){
+void Personnage::Right(int value){
     x += value;
 }

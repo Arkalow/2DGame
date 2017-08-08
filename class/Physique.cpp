@@ -1,8 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <cstdlib>
-#include <math.h>
-using namespace std;
+#include "../import.h"
 #include "Vecteur.h"
 #include "Physique.h"
 Physique::Physique() : acceleration(0, 0), vitesse(0, 0){
