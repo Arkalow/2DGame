@@ -36,7 +36,7 @@ Vecteur Physique::update(){
     for(int i = 0; i < 5; i++){
         if(vecteurs[i] != NULL){
             acceleration = acceleration + *vecteurs[i];
-            cout << i << " " << *vecteurs[i] << endl;
+            // cout << i << " " << *vecteurs[i] << endl;
         }
     }
     //primitive comme t est toujours à 1 acceleration = vitesse

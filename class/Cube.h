@@ -12,13 +12,15 @@ class Cube
         ~Cube();
         friend ostream& operator<<(ostream&, Cube&);
         sf::RectangleShape Form();
-        void update();
+        Vecteur update();
         int X();
         int Y();
         void addForce(Vecteur *);
         void removeForce(Vecteur *);
         void setVitesseX(float);
         void setVitesseY(float);
-        void move(int);
+        Vecteur move(float, float);
+        void Right(int);
+        void Left(int);
 };
 #endif

@@ -58,21 +58,30 @@ void Level::updateBackground(int x, int y){
 int Level::operator()(int x, int y){
     return map->G(x, y);
 }
-bool Level::test(int x, int y){
-    if(map->G(x/BLOCK, y/BLOCK) != 1){
-        if(x % BLOCK != 1 && y % BLOCK != 1){
-            if(map->G(x/BLOCK + 1, y/BLOCK + 1) != 1 && map->G(x/BLOCK + 1, y/BLOCK) != 1 && map->G(x/BLOCK, y/BLOCK + 1) != 1)
-                return true;  
-        }else if(x % BLOCK != 1){
-            if(map->G(x/BLOCK + 1, y/BLOCK) != 1)
-                return true;
-        }else if(y % BLOCK != 1){
-            if(map->G(x/BLOCK, y/BLOCK + 1) != 1)
-                return true; 
-        }else{
-            return true;
-        }
+bool Level::test(int x, int y){//Ya un mur ???
+    if(map->G(x/BLOCK, y/BLOCK) == 1){//sur un mur
+        return true;
     }else{
-        return false;
+        if(x % BLOCK == 0 && y % BLOCK == 0){//pile sur une case
+            return false;
+        }else if(x % BLOCK == 0){//x est aligné
+            if(map->G(x/BLOCK, y/BLOCK + 1) == 1){//ya un mur en dessous
+                return true;
+            }else{
+                return false;
+            }
+        }else if(y % BLOCK == 0){//y est aligné
+            if(map->G(x/BLOCK + 1, y/BLOCK) == 1){//ya un mur à droite
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            if(map->G(x/BLOCK + 1, y/BLOCK + 1) == 1 || map->G(x/BLOCK, y/BLOCK + 1) == 1 || map->G(x/BLOCK + 1, y/BLOCK) == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 }

@@ -23,12 +23,10 @@ ostream& operator<<(ostream &os, Cube &c)
 sf::RectangleShape Cube::Form(){
     return form;
 }
-void Cube::update(){
+Vecteur Cube::update(){
     Vecteur position(0, 0);
     position = physique.update();
-    x += position.X();
-    y += position.Y();
-    form.setPosition(x, y);
+    return position;
 }
 int Cube::X(){
     return x;
@@ -47,6 +45,15 @@ void Cube::setVitesseX(float value){
 }
 void Cube::setVitesseY(float value){
     physique.setVitesseY(value);
-}void Cube::move(int value){
+}
+Vecteur Cube::move(float deplacementX, float deplacementY){
+    x += deplacementX;
+    y += deplacementY;
+    form.setPosition(x, y);
+}
+void Cube::Left(int value){
+    x -= value;
+}
+void Cube::Right(int value){
     x += value;
 }

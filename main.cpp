@@ -44,7 +44,7 @@ int main()
     Level lvl;
     lvl.init();
 
-    Cube a(200, 200);
+    Cube a(8*BLOCK, 3*BLOCK);
 
     Vecteur * gravity;
     Vecteur * ground;
@@ -69,7 +69,28 @@ int main()
         lvl.updateBackground(a.X(), a.Y());
 
         a.update();
-        if(lvl.test(a.X(), a.Y() + 1) == false){
+        Vecteur deplacement;
+        deplacement = a.update();
+        int dpX = deplacement.X();
+        int dpY = deplacement.Y();
+        while(lvl.test(a.X()+dpX, a.Y()+dpY) == true){
+            if(dpX > 0){
+                dpX--;
+            }else if(dpX < 0){
+                dpX++;
+            }
+            if(dpY > 0){
+                dpY--;
+
+            }else if(dpY < 0){
+                dpY++;
+            }
+            
+        }
+            
+        a.move(dpX, dpY);
+
+        if(lvl.test(a.X(), a.Y() + 1) == true){
             if(ground == NULL){
                 ground = new Vecteur(0, -4);
                 a.addForce(ground);
@@ -81,23 +102,28 @@ int main()
                 ground = NULL;
             }
         }
+        
+
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-            if(lvl.test(a.X(), a.Y() + 1) == false){
-                a.setVitesseY(-50);
+            if(lvl.test(a.X(), a.Y() + 1) == true){
+                a.setVitesseY(-80);
             }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-            a.move(-3);
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-                a.move(-3);
+            if(lvl.test(a.X() - 3, a.Y()) == false){
+                a.Left(3);
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+                    a.Left(3);
+                }
             }
 
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            a.move(3);
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-                a.move(3);
+            if(lvl.test(a.X() + 3, a.Y()) == false){
+                a.Right(3);
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+                    a.Right(3);
+                }
             }
         }
-        // cout << a << endl;
         window.clear();
         window.draw(lvl.Background());
         for(int i = 0; i < lvl.NbPlatform(); i++){
