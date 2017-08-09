@@ -9,17 +9,24 @@ Level::Level(){
 
 }
 void Level::init(){
-    platform = new Platform[3];
+    nbPlatform = 9;
+    platform = new Platform[nbPlatform];
     platform[0].init(3, 3, 3, 1);
-    platform[2].init(9, 7, 3, 4);
-    platform[1].init(2, 5, 5, 4);
-    nbPlatform = 3;
+    platform[1].init(4, 7, 13, 4);
+    platform[2].init(12, 5, 3, 1);
+    platform[3].init(16, 2, 5, 4);
+    platform[4].init(23, 5, 6, 1);
+    platform[5].init(30, 3, 9, 4);
+    platform[6].init(43, 5, 8, 8);
+
+    platform[7].init(0, 0, 3, 15);
+    platform[8].init(51, 0, 10, 15);
 
     backgroundTexture.loadFromFile("image/platform/png/BG/BG.png");
     background.setPosition(0, 0);
     background.setTexture(backgroundTexture);
 
-    map = new Grid(100, 50);
+    map = new Grid(200, 80);
     
     for(unsigned int i = 0; i < nbPlatform; i++){
         //cout << "Platform" << i <<endl;

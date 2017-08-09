@@ -48,7 +48,7 @@ int main()
     lvl.init();
 
     Personnage a(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
-    int speed = 5;
+    int speed;
 
     Vecteur * gravity;
     Vecteur * ground;
@@ -56,7 +56,7 @@ int main()
 
     jump = NULL;
     ground = NULL;
-    gravity = new Vecteur(0, 4);
+    gravity = new Vecteur(0, 2);
     a.addForce(gravity);
        
 
@@ -97,7 +97,7 @@ int main()
 
         if(lvl.test(a.X(), a.Y() + 1) == true){
             if(ground == NULL){
-                ground = new Vecteur(0, -4);
+                ground = new Vecteur(0, -2);
                 a.addForce(ground);
                 a.setVitesseY(0);
             }
@@ -111,7 +111,7 @@ int main()
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             if(lvl.test(a.X(), a.Y() + 1) == true){
-                a.setVitesseY(-80);
+                a.setVitesseY(-60);
             }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
             if(lvl.test(a.X() - speed, a.Y()) == false){
