@@ -4,6 +4,7 @@
 #include "class/Vecteur.h"
 #include "class/Physique.h"
 #include "class/Animation.h"
+#include "class/Camera.h"
 #include "class/Personnage.h"
 #include "class/Platform.h"
 #include "class/Grid.h"
@@ -69,6 +70,7 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        window.setView(a.Cam());
         lvl.updateBackground(a.X(), a.Y());
 
         a.update();

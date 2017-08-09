@@ -2,8 +2,10 @@
 #include "Vecteur.h"
 #include "Physique.h"
 #include "Animation.h"
+#include "Camera.h"
 #include "Personnage.h"
-Personnage::Personnage(int x, int y, string ln) : physique(), form(ln){
+Personnage::Personnage(int x, int y, string ln)
+ : physique(), form(ln), cam(){
     this->x = x;
     this->y = y;
     form.setPosition(x, y);
@@ -54,4 +56,7 @@ void Personnage::Left(int value){
 void Personnage::Right(int value){
     x += value;
     form.playAnimation(2);
+}
+sf::View Personnage::Cam(){
+    return cam.updateCamera(x, y);
 }

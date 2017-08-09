@@ -6,6 +6,7 @@ class Personnage
         int x, y;
         Animation form;
         Physique physique;
+        Camera cam;
     public:
         Personnage(int, int, string);
         ~Personnage();
@@ -21,5 +22,6 @@ class Personnage
         Vecteur move(float, float);
         void Right(int);
         void Left(int);
+        sf::View Cam();
 };
 #endif
