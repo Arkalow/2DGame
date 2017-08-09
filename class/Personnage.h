@@ -4,14 +4,13 @@ class Personnage
 {
     private:
         int x, y;
-        sf::RectangleShape form;
+        Animation form;
         Physique physique;
     public:
-        Personnage(int, int);
-        Personnage();
+        Personnage(int, int, string);
         ~Personnage();
         friend ostream& operator<<(ostream&, Personnage&);
-        sf::RectangleShape Form();
+        sf::Sprite Form();
         Vecteur update();
         int X();
         int Y();

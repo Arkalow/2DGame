@@ -3,7 +3,7 @@
 
 #include "class/Vecteur.h"
 #include "class/Physique.h"
-
+#include "class/Animation.h"
 #include "class/Personnage.h"
 #include "class/Platform.h"
 #include "class/Grid.h"
@@ -46,7 +46,7 @@ int main()
     Level lvl;
     lvl.init();
 
-    Personnage a(8*BLOCK, 3*BLOCK);
+    Personnage a(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
     int speed = 5;
 
     Vecteur * gravity;

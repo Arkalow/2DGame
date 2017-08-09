@@ -1,15 +1,11 @@
 #include "../import.h"
 #include "Vecteur.h"
 #include "Physique.h"
+#include "Animation.h"
 #include "Personnage.h"
-Personnage::Personnage(){
-    
-}
-Personnage::Personnage(int x, int y) : physique(){
+Personnage::Personnage(int x, int y, string ln) : physique(), form(ln){
     this->x = x;
     this->y = y;
-    form.setSize(sf::Vector2f(32, 32));
-    form.setFillColor(sf::Color::Red);
     form.setPosition(x, y);
 }
 Personnage::~Personnage(){
@@ -20,8 +16,8 @@ ostream& operator<<(ostream &os, Personnage &c)
     os << "x: " << c.x << "| y: " << c.y << "\n";
     return os;
 }
-sf::RectangleShape Personnage::Form(){
-    return form;
+sf::Sprite Personnage::Form(){
+    return form.Sprite();
 }
 Vecteur Personnage::update(){
     Vecteur position(0, 0);
@@ -53,7 +49,9 @@ Vecteur Personnage::move(float deplacementX, float deplacementY){
 }
 void Personnage::Left(int value){
     x -= value;
+    form.playAnimation(1);
 }
 void Personnage::Right(int value){
     x += value;
+    form.playAnimation(2);
 }
