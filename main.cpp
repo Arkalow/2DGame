@@ -1,3 +1,10 @@
+/*!
+ * \file main.cpp
+ * \brief Programme principal
+ * \author Omer
+ * \date 9 août 2017
+ */
+
 #define VAR_GLOBALES
 #include "import.h"
 
@@ -57,7 +64,7 @@ int main()
     jump = NULL;
     ground = NULL;
     gravity = new Vecteur(0, 2);
-    a.addForce(gravity);
+    a.physique.add(gravity);
        
 
     window.clear();
@@ -73,9 +80,8 @@ int main()
         window.setView(a.Cam());
         lvl.updateBackground(a.X(), a.Y());
 
-        a.update();
         Vecteur deplacement;
-        deplacement = a.update();
+        deplacement = a.physique.update();
         int dpX = deplacement.X();
         int dpY = deplacement.Y();
         while(lvl.test(a.X()+dpX, a.Y()+dpY) == true){
@@ -98,12 +104,12 @@ int main()
         if(lvl.test(a.X(), a.Y() + 1) == true){
             if(ground == NULL){
                 ground = new Vecteur(0, -2);
-                a.addForce(ground);
+                a.physique.add(ground);
                 a.setVitesseY(0);
             }
         }else{
             if(ground != NULL){
-                a.removeForce(ground);
+                a.physique.remove(ground);
                 ground = NULL;
             }
         }
@@ -111,7 +117,7 @@ int main()
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             if(lvl.test(a.X(), a.Y() + 1) == true){
-                a.setVitesseY(-60);
+                a.setVitesseY(-40);
             }
         }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
             if(lvl.test(a.X() - speed, a.Y()) == false){

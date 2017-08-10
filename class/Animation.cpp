@@ -1,3 +1,9 @@
+/*!
+ * \file Animation.cpp
+ * \brief Fonction de la classe Animation
+ * \author Omer
+ * \date 9 août 2017
+ */
 #include "../import.h"
 #include "Animation.h"
 Animation::Animation(string ln){

@@ -1,3 +1,9 @@
+/*!
+ * \file Personnage.cpp
+ * \brief Fonction de la classe Personnage
+ * \author Omer
+ * \date 9 août 2017
+ */
 #include "../import.h"
 #include "Vecteur.h"
 #include "Physique.h"
@@ -21,22 +27,11 @@ ostream& operator<<(ostream &os, Personnage &c)
 sf::Sprite Personnage::Form(){
     return form.Sprite();
 }
-Vecteur Personnage::update(){
-    Vecteur position(0, 0);
-    position = physique.update();
-    return position;
-}
 int Personnage::X(){
     return x;
 }
 int Personnage::Y(){
     return y;
-}
-void Personnage::addForce(Vecteur * v){
-    physique.add(v);
-}
-void Personnage::removeForce(Vecteur * v){
-    physique.remove(v);
 }
 void Personnage::setVitesseX(float value){
     physique.setVitesseX(value);
@@ -44,7 +39,7 @@ void Personnage::setVitesseX(float value){
 void Personnage::setVitesseY(float value){
     physique.setVitesseY(value);
 }
-Vecteur Personnage::move(float deplacementX, float deplacementY){
+void Personnage::move(float deplacementX, float deplacementY){
     x += deplacementX;
     y += deplacementY;
     form.setPosition(x, y);

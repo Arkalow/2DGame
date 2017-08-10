@@ -1,3 +1,9 @@
+/*!
+ * \file Physique.cpp
+ * \brief Fonction de la classe Physique
+ * \author Omer
+ * \date 9 août 2017
+ */
 #include "../import.h"
 #include "Vecteur.h"
 #include "Physique.h"

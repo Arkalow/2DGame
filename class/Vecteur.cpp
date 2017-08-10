@@ -1,6 +1,10 @@
-using namespace std;
-#include <iostream>
-#include <cstdlib>
+/*!
+ * \file Vecteur.cpp
+ * \brief Fonction de la classe Vecteur
+ * \author Omer
+ * \date 9 août 2017
+ */
+#include "../import.h"
 #include "Vecteur.h"
 Vecteur::Vecteur(){
     this->x = 0;

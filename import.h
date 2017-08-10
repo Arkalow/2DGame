@@ -1,3 +1,12 @@
+/*!
+ * \file import.h
+ * \brief Contient les constantes entre les fichiers et les includes de base
+ * \author Omer
+ * \date 9 août 2017
+ */
+#ifndef IMPORT_H
+#define IMPORT_H
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
@@ -20,4 +29,5 @@ using namespace std;
     extern int BLOCK; 
     extern float g;
     extern sf::Texture texture[18];
+#endif
 #endif
