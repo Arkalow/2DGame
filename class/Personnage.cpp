@@ -11,7 +11,7 @@
 #include "Camera.h"
 #include "Personnage.h"
 Personnage::Personnage(int x, int y, string ln)
- : physique(), form(ln), cam(){
+ : form(ln), cam(){
     this->x = x;
     this->y = y;
     form.setPosition(x, y);

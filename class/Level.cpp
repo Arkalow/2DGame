@@ -34,10 +34,10 @@ void Level::init(){
 
     map = new Grid(200, 80);
     
-    for(unsigned int i = 0; i < nbPlatform; i++){
+    for(int i = 0; i < nbPlatform; i++){
         //cout << "Platform" << i <<endl;
-        for(unsigned int y = platform[i].Y() * 2; y < platform[i].Y() * 2 + platform[i].Height() * 2; y++){
-            for(unsigned int x = platform[i].X() * 2; x < platform[i].X() * 2 + platform[i].Width() * 2; x++){
+        for(int y = platform[i].Y() * 2; y < platform[i].Y() * 2 + platform[i].Height() * 2; y++){
+            for(int x = platform[i].X() * 2; x < platform[i].X() * 2 + platform[i].Width() * 2; x++){
                 map->set(x, y, 1);
                 //cout << "Map || " << "x: " << x << "| " << "y: " << y << endl;
             }

@@ -7,7 +7,7 @@ Grid::Grid(int c, int l){
     this->l = l;
     this->c = c;
     g = new unsigned short int *[c];
-    for(unsigned int i = 0; i < c; i++){
+    for(int i = 0; i < c; i++){
         g[i] = new unsigned short int [l];
     }
 }
@@ -15,7 +15,7 @@ Grid::Grid(int c, int l){
 * @desc Destructeur
 */
 Grid::~Grid(){
-    for(unsigned int i = 0; i < c; i++){
+    for(int i = 0; i < c; i++){
         delete[] g[i];
     }
     delete[] g;
