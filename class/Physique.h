@@ -15,7 +15,7 @@
 class Physique
 {
     private:
-        Vecteur * vecteurs[5]; /*!< Forces appliqué à l'objet*/
+        Vecteur forces; /*!< Forces appliqué à l'objet*/
         Vecteur acceleration; /*!< L'accélération de l'objet*/
         Vecteur vitesse; /*!< Vitesse de l'objet*/
     public:
@@ -42,7 +42,7 @@ class Physique
          *  \param Vecteur * : pointeur du vecteur force à ajouter
          *
          */          
-        void add(Vecteur *);
+        void add(Vecteur);
 
         /*!
          *  \brief supprimer une force
@@ -52,7 +52,7 @@ class Physique
          *  \param Vecteur * : pointeur du vecteur force à supprimer
          *
          */  
-        void remove(Vecteur *);
+        void remove(Vecteur);
 
         /*!
          *  \brief recalcul

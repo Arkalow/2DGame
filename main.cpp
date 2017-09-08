@@ -57,13 +57,8 @@ int main()
     Personnage a(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
     int speed;
 
-    Vecteur * gravity;
-    Vecteur * ground;
-    Vecteur * jump;
-
-    jump = NULL;
-    ground = NULL;
-    gravity = new Vecteur(0, 2);
+    Vecteur gravity(0, 2);
+    
     a.physique.add(gravity);
        
 
@@ -95,23 +90,14 @@ int main()
 
             }else if(dpY < 0){
                 dpY++;
-            }
-            
+            } 
         }
             
         a.move(dpX, dpY);
 
         if(lvl.test(a.X(), a.Y() + 1) == true){
-            if(ground == NULL){
-                ground = new Vecteur(0, -2);
-                a.physique.add(ground);
-                a.setVitesseY(0);
-            }
-        }else{
-            if(ground != NULL){
-                a.physique.remove(ground);
-                ground = NULL;
-            }
+            a.setVitesseY(0);
+            a.setVitesseX(0);
         }
         
 

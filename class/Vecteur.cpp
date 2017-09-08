@@ -14,6 +14,11 @@ Vecteur::Vecteur(float x, float y){
     this->x = x;
     this->y = y;
 }
+Vecteur::Vecteur(float x, float y, string label){
+    this->label = label;
+    this->x = x;
+    this->y = y;
+}
 void Vecteur::init(float x, float y){
     this->x = x;
     this->y = y;

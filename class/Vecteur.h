@@ -16,6 +16,7 @@ class Vecteur
 {
     private:
         float x, y;
+        string label;
     public:
         /*!
          *  \brief Constructeur
@@ -24,6 +25,7 @@ class Vecteur
          *
          */
         Vecteur();
+
         /*!
          *  \brief Constructeur
          *
@@ -32,7 +34,19 @@ class Vecteur
          *  \param float : x
          *  \param float : y
          */
-        Vecteur(float, float);
+        Vecteur(float, float, string);
+
+        /*!
+         *  \brief Constructeur
+         *
+         *  Constructeur de la classe Vecteur
+         *
+         *  \param float : x
+         *  \param float : y
+         *  \param string : label
+         */
+         Vecteur(float, float);
+
         /*!
          *  \brief Destructeur
          *
