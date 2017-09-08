@@ -50,17 +50,17 @@ int main()
     for(int i = 0; i < 18; i++)
         texture[i].setSmooth(true);
 
-
+    //Lancement du niveau
     Level lvl;
     lvl.init();
 
+    //Création du personnage
     Personnage a(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
-    int speed;
+    int speed;  // **** à lier au personnage
 
+    //Ajout d'une gravité au personnage
     Vecteur gravity(0, 2);
-    
     a.physique.add(gravity);
-       
 
     window.clear();
     while (window.isOpen())
@@ -72,9 +72,15 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        //Positionnement de la camera
         window.setView(a.Cam());
+        //positionnement du decor
         lvl.updateBackground(a.X(), a.Y());
 
+
+
+        
+        /*  DEPLACEMENT */
         Vecteur deplacement;
         deplacement = a.physique.update();
         int dpX = deplacement.X();
@@ -90,17 +96,18 @@ int main()
 
             }else if(dpY < 0){
                 dpY++;
-            } 
-        }
-            
+            }
+        }     
         a.move(dpX, dpY);
-
         if(lvl.test(a.X(), a.Y() + 1) == true){
             a.setVitesseY(0);
             a.setVitesseX(0);
         }
         
 
+
+
+        /*GESTION CLAVIER*/
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
             if(lvl.test(a.X(), a.Y() + 1) == true){
                 a.setVitesseY(-40);
@@ -121,6 +128,10 @@ int main()
         }else{
             speed = 5;
         }
+
+
+
+        /*AFFICHAGE*/
         window.clear();
         window.draw(lvl.Background());
         for(int i = 0; i < lvl.NbPlatform(); i++){

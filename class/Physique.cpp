@@ -16,9 +16,6 @@ Physique::~Physique(){
 void Physique::add(Vecteur v){
     acceleration = acceleration + v;
 }
-void Physique::remove(Vecteur v){
-    acceleration = acceleration + (v * -1);
-}
 Vecteur Physique::update(){
     Vecteur position(0, 0);
     //primitive comme t est toujours à 1 acceleration = vitesse

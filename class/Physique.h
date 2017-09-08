@@ -39,20 +39,10 @@ class Physique
          *
          *  Procédure qui ajoute une force qui s'appliquera à l'objet 
          *
-         *  \param Vecteur * : pointeur du vecteur force à ajouter
+         *  \param Vecteur : vecteur force à ajouter
          *
          */          
         void add(Vecteur);
-
-        /*!
-         *  \brief supprimer une force
-         *
-         *  Procédure qui supprimer une force qui s'applique à l'objet 
-         *
-         *  \param Vecteur * : pointeur du vecteur force à supprimer
-         *
-         */  
-        void remove(Vecteur);
 
         /*!
          *  \brief recalcul
