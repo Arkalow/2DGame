@@ -17,6 +17,9 @@
 #include "class/Grid.h"
 #include "class/Level.h"
 
+void deplacementPersonnage(Personnage *, Level *);
+void gestionClavier(Personnage *, Level *);
+
 int main()
 {
     cout << "=========================================================================" << endl;
@@ -50,17 +53,18 @@ int main()
     for(int i = 0; i < 18; i++)
         texture[i].setSmooth(true);
 
-    //Lancement du niveau
+        //Lancement du niveau
     Level lvl;
     lvl.init();
 
     //Création du personnage
     Personnage a(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
-    int speed;  // **** à lier au personnage
+    Personnage b(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png");
 
     //Ajout d'une gravité au personnage
     Vecteur gravity(0, 2);
     a.physique.add(gravity);
+    b.physique.add(gravity);
 
     window.clear();
     while (window.isOpen())
@@ -71,63 +75,19 @@ int main()
             //fermeture de la fenetre
             if (event.type == sf::Event::Closed)
                 window.close();
-        }
+            }
         //Positionnement de la camera
         window.setView(a.Cam());
         //positionnement du decor
         lvl.updateBackground(a.X(), a.Y());
 
-
-
-        
-        /*  DEPLACEMENT */
-        Vecteur deplacement;
-        deplacement = a.physique.update();
-        int dpX = deplacement.X();
-        int dpY = deplacement.Y();
-        while(lvl.test(a.X()+dpX, a.Y()+dpY) == true){
-            if(dpX > 0){
-                dpX--;
-            }else if(dpX < 0){
-                dpX++;
-            }
-            if(dpY > 0){
-                dpY--;
-
-            }else if(dpY < 0){
-                dpY++;
-            }
-        }     
-        a.move(dpX, dpY);
-        if(lvl.test(a.X(), a.Y() + 1) == true){
-            a.setVitesseY(0);
-            a.setVitesseX(0);
-        }
         
 
+        deplacementPersonnage(&a, &lvl);
+        deplacementPersonnage(&b, &lvl);
 
-
-        /*GESTION CLAVIER*/
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-            if(lvl.test(a.X(), a.Y() + 1) == true){
-                a.setVitesseY(-40);
-            }
-        }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-            if(lvl.test(a.X() - speed, a.Y()) == false){
-                a.Left(speed);
-            }
-
-        }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-            if(lvl.test(a.X() + speed, a.Y()) == false){
-                a.Right(speed);
-                
-            }
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-            speed = 10;
-        }else{
-            speed = 5;
-        }
+        gestionClavier(&a, &lvl);
+        gestionClavier(&b, &lvl);
 
 
 
@@ -138,9 +98,55 @@ int main()
            for(int j = 0; j < lvl.platform[i].n; j++)
                window.draw(lvl.platform[i].Sprite(j));
         }
+        window.draw(b.Form());
         window.draw(a.Form());
         window.display();
     }
 
     return 0;
+}
+
+void deplacementPersonnage(Personnage * pers, Level * lvl){
+    /*  DEPLACEMENT */
+    Vecteur deplacement;
+    deplacement = pers->physique.update();
+    int dpX = deplacement.X();
+    int dpY = deplacement.Y();
+    while(lvl->test(pers->X()+dpX, pers->Y()+dpY) == true){
+        if(dpX > 0){
+            dpX--;
+        }else if(dpX < 0){
+            dpX++;
+        }
+        if(dpY > 0){
+            dpY--;
+
+        }else if(dpY < 0){
+            dpY++;
+        }
+    }     
+    pers->move(dpX, dpY);
+    if(lvl->test(pers->X(), pers->Y() + 1) == true){
+        pers->setVitesseY(0);
+        pers->setVitesseX(0);
+    }
+}
+
+void gestionClavier(Personnage * pers, Level * lvl){
+    /*GESTION CLAVIER*/
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){//JUMP
+        if(lvl->test(pers->X(), pers->Y() + 1) == true){
+            pers->setVitesseY(-50);
+        }
+    }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+        if(lvl->test(pers->X() - 5, pers->Y()) == false){
+            pers->Left(5);
+        }
+
+    }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        if(lvl->test(pers->X() + 5, pers->Y()) == false){
+            pers->Right(5);
+            
+        }
+    }
 }
