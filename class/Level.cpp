@@ -5,8 +5,13 @@
  * \date 9 août 2017
  */
 #include "../import.h"
-#include "Grid.h"
+#include "Vecteur.h"
+#include "Physique.h"
+#include "Animation.h"
+#include "Camera.h"
+#include "Personnage.h"
 #include "Platform.h"
+#include "Grid.h"
 #include "Level.h"
 /**
 * @desc Constructeur
@@ -45,12 +50,24 @@ void Level::init(){
     }
 
 
+
+    //Création du personnage
+    player1 = new Personnage(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
+    player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png");
+
+    //Ajout d'une gravité au personnage
+    Vecteur gravity(0, 2);
+    player1->physique.add(gravity);
+    player2->physique.add(gravity);
 }
+
 /**
 * @desc Destructeur
 */
 Level::~Level(){
     delete[] platform;
+    delete player1;
+    delete player2;
 }
 /**
 * @desc return nbPlatform
@@ -97,4 +114,87 @@ bool Level::test(int x, int y){//Ya un mur ???
             }
         }
     }
+}
+void Level::deplacementPersonnage(Personnage * pers){
+    /*  DEPLACEMENT */
+    Vecteur deplacement;
+    deplacement = pers->physique.update();
+    int dpX = deplacement.X();
+    int dpY = deplacement.Y();
+    while(test(pers->X()+dpX, pers->Y()+dpY) == true){
+        if(dpX > 0){
+            dpX--;
+        }else if(dpX < 0){
+            dpX++;
+        }
+        if(dpY > 0){
+            dpY--;
+
+        }else if(dpY < 0){
+            dpY++;
+        }
+    }     
+    pers->move(dpX, dpY);
+    if(test(pers->X(), pers->Y() + 1) == true){
+        pers->setVitesseY(0);
+        pers->setVitesseX(0);
+    }
+}
+
+void Level::gestionClavier(Personnage * pers){
+    /*GESTION CLAVIER*/
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){//JUMP
+        if(test(pers->X(), pers->Y() + 1) == true){
+            pers->setVitesseY(-50);
+        }
+    }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+        if(test(pers->X() - 5, pers->Y()) == false){
+            pers->Left(5);
+        }
+
+    }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        if(test(pers->X() + 5, pers->Y()) == false){
+            pers->Right(5);
+            
+        }
+    }
+}
+int Level::game(sf::RenderWindow * window){
+    window->clear();
+    while (window->isOpen())
+    {
+        sf::Event event;
+        while (window->pollEvent(event))
+        {
+            //fermeture de la fenetre
+            if (event.type == sf::Event::Closed)
+                window->close();
+            }
+        //Positionnement de la camera
+        window->setView(player1->Cam());
+        //positionnement du decor
+        updateBackground(player1->X(), player1->Y());
+
+        
+
+        deplacementPersonnage(player1);
+        deplacementPersonnage(player2);
+
+        gestionClavier(player1);
+        gestionClavier(player2);
+
+
+
+        /*AFFICHAGE*/
+        window->clear();
+        window->draw(Background());
+        for(int i = 0; i < NbPlatform(); i++){
+           for(int j = 0; j < platform[i].n; j++)
+               window->draw(platform[i].Sprite(j));
+        }
+        window->draw(player1->Form());
+        window->draw(player2->Form());
+        window->display();
+    }
+    return 0;
 }

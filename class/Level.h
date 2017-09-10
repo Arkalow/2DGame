@@ -19,6 +19,10 @@ class Level
         sf::Texture backgroundTexture; /*!< image du background*/
         sf::Sprite background; /*!< sprte du background*/
         Grid * map; /*!< grille qui contient l'emplacement des murs*/
+        Personnage * player1;
+        Personnage * player2;
+        void deplacementPersonnage(Personnage *);
+        void gestionClavier(Personnage *);
     public:
         Platform * platform;
 
@@ -29,6 +33,7 @@ class Level
          *
          */
         Level();
+        
         /*!
          *  \brief Destructeur
          *
@@ -101,6 +106,8 @@ class Level
          * 
          */ 
         bool test(int, int);
+
+        int game(sf::RenderWindow *);
         
 };
 #endif
