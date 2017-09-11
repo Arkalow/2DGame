@@ -16,6 +16,8 @@
 #include "class/Platform.h"
 #include "class/Grid.h"
 #include "class/Level.h"
+#include "class/Button.h"
+#include "class/Menu.h"
 
 int main()
 {
@@ -52,6 +54,13 @@ int main()
 
         //Lancement du niveau
     Level lvl;
+
+        //menu
+    Menu menuStart;
+    if(menuStart.show(&window) == 0){
+        window.close();
+    }
+
     lvl.init();
 
     lvl.game(&window);

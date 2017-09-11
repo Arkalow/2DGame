@@ -7,12 +7,12 @@
 #include "../import.h"
 #include "Button.h"
 Button::Button() : background(), label(){
-    background.setSize(sf::Vector2f(100, 50));
-    background.setOutlineColor(sf::Color::Red);
-    background.setOutlineThickness(5);
-    background.setPosition(10, 20);
+    background.setSize(sf::Vector2f(300, 70));
+    background.setFillColor(sf::Color::Blue);
+    background.setPosition(0, 0);
 
     label.setString("test");
+    label.setColor(sf::Color::Green);
 }
 Button::~Button(){
 

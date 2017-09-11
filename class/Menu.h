@@ -44,6 +44,6 @@ class Menu
          *  \param sf::RenderWindow * : window
          * 
          */
-        void draw(sf::RenderWindow *);
+        int show(sf::RenderWindow *);
 };
 #endif

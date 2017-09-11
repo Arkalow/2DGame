@@ -8,16 +8,36 @@
 #include "Button.h"
 #include "Menu.h"
 Menu::Menu(){
-    sf::RectangleShape rectangle;
     n = 2;
     boutons = new Button[n];
+    background.setSize(sf::Vector2f(screenWIDTH, screenHEIGHT));
+    background.setFillColor(sf::Color::Red);
+    background.setPosition(0, 0);
 }
 Menu::~Menu(){
-    delete boutons;
+    delete[] boutons;
 }
-void Menu::draw(sf::RenderWindow * window){
+int Menu::show(sf::RenderWindow * window){
+    window->clear();
+    
+    window->draw(background);
     for(int i = 0; i < n; i++){
         boutons[i].draw(window);
     }
-    window->draw(background);  
-} 
+
+    window->display();
+    while (window->isOpen())
+    {
+        sf::Event event;
+        while (window->pollEvent(event))
+        {
+            //fermeture de la fenetre
+            if (event.type == sf::Event::Closed)
+                return 0;
+            }
+        
+        /*AFFICHAGE*/
+        
+    }
+    return 0;
+}
