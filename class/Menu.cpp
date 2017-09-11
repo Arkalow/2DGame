@@ -13,6 +13,12 @@ Menu::Menu(){
     background.setSize(sf::Vector2f(screenWIDTH, screenHEIGHT));
     background.setFillColor(sf::Color::Red);
     background.setPosition(0, 0);
+
+    for(int i = 0; i < n; i++){
+        boutons[i].setPosition(100, i * 100 + 100);
+    }
+    select = 0;
+    boutons[select].hight();
 }
 Menu::~Menu(){
     delete[] boutons;
@@ -36,8 +42,35 @@ int Menu::show(sf::RenderWindow * window){
                 return 0;
             }
         
-        /*AFFICHAGE*/
+            /*Selection du menu*/
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){//Entrer
+            if(select == 0){
+                return 1;
+            }
+        }
+
+            /*Scroling*/
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){//haut
+            if(select > 0){
+                boutons[select].low();
+                boutons[select].draw(window);
+                select--;
+                boutons[select].hight();
+                boutons[select].draw(window);
+            }
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){//bas
+            if(select < n - 1){
+                boutons[select].low();
+                boutons[select].draw(window);
+                select++;
+                boutons[select].hight();
+                boutons[select].draw(window);
+            }
+        }
+
         
+        window->display();
     }
     return 0;
 }

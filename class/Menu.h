@@ -18,6 +18,7 @@ class Menu
         Button * boutons; /*!< tableau des boutons qui composent le menu*/
         int n; /*!< nombre de boutons*/
         sf::RectangleShape background; /*!< background du menu*/
+        int select;
     public:
     
         /*!

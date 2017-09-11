@@ -10,14 +10,23 @@ Button::Button() : background(), label(){
     background.setSize(sf::Vector2f(300, 70));
     background.setFillColor(sf::Color::Blue);
     background.setPosition(0, 0);
-
+    
     label.setString("test");
     label.setColor(sf::Color::Green);
 }
 Button::~Button(){
-
+    
 }
 void Button::draw(sf::RenderWindow * window){
     window->draw(background);
     window->draw(label);
-} 
+}
+void Button::setPosition(int x, int y){
+    background.setPosition(x, y);
+}
+void Button::hight(){
+    background.setFillColor(sf::Color::Yellow);
+}
+void Button::low(){
+    background.setFillColor(sf::Color::Blue);
+}

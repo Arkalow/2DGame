@@ -17,6 +17,7 @@
 private:
     sf::RectangleShape background;/*!< Background du bouton*/
     sf::Text label;/*!< Label du bouton*/
+    int id;
     public:
         
         /*!
@@ -44,5 +45,32 @@ private:
          * 
          */
         void draw(sf::RenderWindow *);
+
+        /*!
+         *  \brief change la position
+         *
+         *  Procédure qui change la position du bouton
+         *
+         *  \param int : position sur x
+         *  \param int : position sur y
+         * 
+         */
+        void setPosition(int, int);
+
+        /*!
+         *  \brief selectionne le bouton
+         *
+         *  Procédure qui allume le bouton
+         * 
+         */
+        void hight();
+
+        /*!
+         *  \brief deselectionne le bouton
+         *
+         *  Procédure qui eteint le bouton
+         * 
+         */    
+        void low();
 };
 #endif
