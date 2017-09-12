@@ -52,11 +52,11 @@ void Level::init(){
 
 
     //Création du personnage
-    player1 = new Personnage(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png");
-    player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png");
+    player1 = new Personnage(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png", sf::Keyboard::Z, sf::Keyboard::Q, sf::Keyboard::D);
+    player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png", sf::Keyboard::O, sf::Keyboard::K, sf::Keyboard::M);
 
     //Ajout d'une gravité au personnage
-    Vecteur gravity(0, 2);
+    Vecteur gravity(0, 4);
     player1->physique.add(gravity);
     player2->physique.add(gravity);
 }
@@ -141,18 +141,18 @@ void Level::deplacementPersonnage(Personnage * pers){
     }
 }
 
-void Level::gestionClavier(Personnage * pers){
     /*GESTION CLAVIER*/
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){//JUMP
+void Level::gestionClavier(Personnage * pers){
+    if(sf::Keyboard::isKeyPressed(pers->jump)){//JUMP
         if(test(pers->X(), pers->Y() + 1) == true){
             pers->setVitesseY(-50);
         }
-    }if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+    }if(sf::Keyboard::isKeyPressed(pers->left)){
         if(test(pers->X() - 5, pers->Y()) == false){
             pers->Left(5);
         }
 
-    }if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+    }if(sf::Keyboard::isKeyPressed(pers->right)){
         if(test(pers->X() + 5, pers->Y()) == false){
             pers->Right(5);
             

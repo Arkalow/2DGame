@@ -27,8 +27,11 @@ class Personnage
          *  \param int : position x
          *  \param int : position y
          *  \param string : lien de l'image
+         *  \param int : touche de jump
+         *  \param int : touche de gauche
+         *  \param int : touche de droite
          */
-        Personnage(int, int, string);
+        Personnage(int, int, string, sf::Keyboard::Key, sf::Keyboard::Key, sf::Keyboard::Key);
         /*!
          *  \brief Destructeur
          *
@@ -132,5 +135,9 @@ class Personnage
         Physique physique;/*!< physique des forces sur le personnage*/
 
         friend ostream& operator<<(ostream&, Personnage&);
+        
+        sf::Keyboard::Key jump; /*!< touche jump*/
+        sf::Keyboard::Key left; /*!< touche gauche*/
+        sf::Keyboard::Key right; /*!< touche droite*/
 };
 #endif

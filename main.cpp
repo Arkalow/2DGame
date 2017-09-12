@@ -65,5 +65,9 @@ int main()
 
     lvl.game(&window);
 
+    cout << "jump : " << sf::Keyboard::Z <<endl;
+    cout << "gauche : " << sf::Keyboard::Q <<endl;
+    cout << "droite : " << sf::Keyboard::D <<endl;
+    
     return 0;
 }

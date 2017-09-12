@@ -10,11 +10,14 @@
 #include "Animation.h"
 #include "Camera.h"
 #include "Personnage.h"
-Personnage::Personnage(int x, int y, string ln)
+Personnage::Personnage(int x, int y, string ln, sf::Keyboard::Key jump, sf::Keyboard::Key left, sf::Keyboard::Key right)
  : form(ln), cam(){
     this->x = x;
     this->y = y;
     form.setPosition(x, y);
+    this->jump = jump;
+    this->left = left;
+    this->right = right;
 }
 Personnage::~Personnage(){
 
