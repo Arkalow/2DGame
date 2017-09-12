@@ -16,6 +16,7 @@ class Camera
 {
     private:
         sf::View camera;
+        int position;
     public:
 
         /*!
@@ -24,12 +25,13 @@ class Camera
          *  Constructeur de la classe Camera
          *
          */
-        Camera();
+        Camera(int);
         /*!
          *  \brief Destructeur
          *
          *  Destructeur de la classe Camera
-         *
+         * 
+         *  \param int : 0 -> vue de gauche  1 -> vue de droite
          */
         ~Camera();
 

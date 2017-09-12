@@ -30,8 +30,10 @@ class Personnage
          *  \param int : touche de jump
          *  \param int : touche de gauche
          *  \param int : touche de droite
+         *  \param int : 0 -> vue de gauche 1 -> vue de droite
          */
-        Personnage(int, int, string, sf::Keyboard::Key, sf::Keyboard::Key, sf::Keyboard::Key);
+        Personnage(int, int, string, sf::Keyboard::Key, sf::Keyboard::Key, sf::Keyboard::Key, int);
+
         /*!
          *  \brief Destructeur
          *

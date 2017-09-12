@@ -21,8 +21,8 @@ class Level
         Grid * map; /*!< grille qui contient l'emplacement des murs*/
         Personnage * player1;
         Personnage * player2;
-        void deplacementPersonnage(Personnage *);
-        void gestionClavier(Personnage *);
+        void deplacementPersonnage(Personnage *); /*!< Colision du personnage*/
+        void gestionClavier(Personnage *); /*!< gère les actions clavier et deplace le personnage*/
     public:
         Platform * platform;
 

@@ -24,10 +24,10 @@ int main()
     cout << "=========================================================================" << endl;
     BLOCK = 32;
     WIDTH = 2000;
-    screenHEIGHT = 600;
-    screenWIDTH = 800;
+    screenHEIGHT = 800;
+    screenWIDTH = 1600;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Collision");
+    sf::RenderWindow window(sf::VideoMode(1600, 800), "Collision");
     window.setFramerateLimit(60);
     window.setPosition(sf::Vector2i(192, 0));
     //import des textures
@@ -64,10 +64,6 @@ int main()
     lvl.init();
 
     lvl.game(&window);
-
-    cout << "jump : " << sf::Keyboard::Z <<endl;
-    cout << "gauche : " << sf::Keyboard::Q <<endl;
-    cout << "droite : " << sf::Keyboard::D <<endl;
     
     return 0;
 }

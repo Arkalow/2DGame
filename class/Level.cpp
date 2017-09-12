@@ -23,7 +23,7 @@ void Level::init(){
     nbPlatform = 9;
     platform = new Platform[nbPlatform];
     platform[0].init(3, 3, 3, 1);
-    platform[1].init(4, 7, 13, 4);
+    platform[1].init(4, 7, 15, 4);
     platform[2].init(12, 5, 3, 1);
     platform[3].init(16, 2, 5, 4);
     platform[4].init(23, 5, 6, 1);
@@ -52,8 +52,8 @@ void Level::init(){
 
 
     //Création du personnage
-    player1 = new Personnage(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png", sf::Keyboard::Z, sf::Keyboard::Q, sf::Keyboard::D);
-    player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png", sf::Keyboard::O, sf::Keyboard::K, sf::Keyboard::M);
+    player1 = new Personnage(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png", sf::Keyboard::Z, sf::Keyboard::Q, sf::Keyboard::D, 0);
+    player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png", sf::Keyboard::O, sf::Keyboard::K, sf::Keyboard::M, 1);
 
     //Ajout d'une gravité au personnage
     Vecteur gravity(0, 4);
@@ -170,31 +170,44 @@ int Level::game(sf::RenderWindow * window){
             if (event.type == sf::Event::Closed)
                 window->close();
             }
-        //Positionnement de la camera
-        window->setView(player1->Cam());
-        //positionnement du decor
-        updateBackground(player1->X(), player1->Y());
+            //positionnement du decor
+            updateBackground(player1->X(), player1->Y());
+            
+            
+            
+            deplacementPersonnage(player1);
+            deplacementPersonnage(player2);
+            
+            gestionClavier(player1);
+            gestionClavier(player2);
+            
+            
+            
+            /*AFFICHAGE*/
+            window->clear();
+            window->draw(Background());
+            for(int i = 0; i < NbPlatform(); i++){
+                for(int j = 0; j < platform[i].n; j++)
+                window->draw(platform[i].Sprite(j));
+            }
+            window->draw(player1->Form());
+            window->draw(player2->Form());
+            
+            //Positionnement de la camera de gauche
+            window->setView(player1->Cam());
 
-        
+            /*AFFICHAGE*/
+            window->draw(Background());
+            for(int i = 0; i < NbPlatform(); i++){
+                for(int j = 0; j < platform[i].n; j++)
+                window->draw(platform[i].Sprite(j));
+            }
+            window->draw(player1->Form());
+            window->draw(player2->Form());
 
-        deplacementPersonnage(player1);
-        deplacementPersonnage(player2);
-
-        gestionClavier(player1);
-        gestionClavier(player2);
-
-
-
-        /*AFFICHAGE*/
-        window->clear();
-        window->draw(Background());
-        for(int i = 0; i < NbPlatform(); i++){
-           for(int j = 0; j < platform[i].n; j++)
-               window->draw(platform[i].Sprite(j));
+            //Positionnement de la camera de droite
+            window->setView(player2->Cam());
+            window->display();
         }
-        window->draw(player1->Form());
-        window->draw(player2->Form());
-        window->display();
+        return 0;
     }
-    return 0;
-}
