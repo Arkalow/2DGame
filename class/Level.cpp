@@ -56,7 +56,7 @@ void Level::init(){
     player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png", sf::Keyboard::O, sf::Keyboard::K, sf::Keyboard::M, 1);
 
     //Ajout d'une gravité au personnage
-    Vecteur gravity(0, 4);
+    Vecteur gravity(0, 2);
     player1->physique.add(gravity);
     player2->physique.add(gravity);
 }
@@ -145,7 +145,7 @@ void Level::deplacementPersonnage(Personnage * pers){
 void Level::gestionClavier(Personnage * pers){
     if(sf::Keyboard::isKeyPressed(pers->jump)){//JUMP
         if(test(pers->X(), pers->Y() + 1) == true){
-            pers->setVitesseY(-50);
+            pers->setVitesseY(-60);
         }
     }if(sf::Keyboard::isKeyPressed(pers->left)){
         if(test(pers->X() - 5, pers->Y()) == false){
@@ -170,8 +170,6 @@ int Level::game(sf::RenderWindow * window){
             if (event.type == sf::Event::Closed)
                 window->close();
             }
-            //positionnement du decor
-            updateBackground(player1->X(), player1->Y());
             
             
             
@@ -185,6 +183,9 @@ int Level::game(sf::RenderWindow * window){
             
             /*AFFICHAGE*/
             window->clear();
+            //positionnement du decor
+            updateBackground(player2->X(), player2->Y());
+
             window->draw(Background());
             for(int i = 0; i < NbPlatform(); i++){
                 for(int j = 0; j < platform[i].n; j++)
@@ -197,6 +198,8 @@ int Level::game(sf::RenderWindow * window){
             window->setView(player1->Cam());
 
             /*AFFICHAGE*/
+            //positionnement du decor
+            updateBackground(player1->X(), player1->Y());
             window->draw(Background());
             for(int i = 0; i < NbPlatform(); i++){
                 for(int j = 0; j < platform[i].n; j++)

@@ -25,7 +25,7 @@ int main()
     BLOCK = 32;
     WIDTH = 2000;
     screenHEIGHT = 800;
-    screenWIDTH = 1600;
+    screenWIDTH = 800;
 
     sf::RenderWindow window(sf::VideoMode(1600, 800), "Collision");
     window.setFramerateLimit(60);
