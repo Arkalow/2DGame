@@ -12,6 +12,7 @@
 #include "class/Physique.h"
 #include "class/Animation.h"
 #include "class/Camera.h"
+#include "class/Weapon.h"
 #include "class/Personnage.h"
 #include "class/Platform.h"
 #include "class/Grid.h"

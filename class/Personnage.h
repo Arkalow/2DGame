@@ -18,6 +18,7 @@ class Personnage
         int x, y;
         Animation form;
         Camera cam;
+        Weapon gun;
     public:
         /*!
          *  \brief Constructeur

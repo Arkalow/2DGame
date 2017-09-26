@@ -9,6 +9,7 @@
 #include "Physique.h"
 #include "Animation.h"
 #include "Camera.h"
+#include "Weapon.h"
 #include "Personnage.h"
 #include "Platform.h"
 #include "Grid.h"
