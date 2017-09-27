@@ -57,7 +57,7 @@ void Level::init(){
     player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png", sf::Keyboard::O, sf::Keyboard::K, sf::Keyboard::M, 1);
 
     //Ajout d'une gravité au personnage
-    Vecteur gravity(0, 2);
+    Vecteur gravity(0, 3);
     player1->physique.add(gravity);
     player2->physique.add(gravity);
 }
@@ -146,7 +146,7 @@ void Level::deplacementPersonnage(Personnage * pers){
 void Level::gestionClavier(Personnage * pers){
     if(sf::Keyboard::isKeyPressed(pers->jump)){//JUMP
         if(test(pers->X(), pers->Y() + 1) == true){
-            pers->setVitesseY(-60);
+            pers->setVitesseY(-50);
         }
     }if(sf::Keyboard::isKeyPressed(pers->left)){
         if(test(pers->X() - 5, pers->Y()) == false){
@@ -193,7 +193,9 @@ int Level::game(sf::RenderWindow * window){
                 window->draw(platform[i].Sprite(j));
             }
             window->draw(player1->Form());
+            window->draw(player1->Gun().Form());
             window->draw(player2->Form());
+            window->draw(player2->Gun().Form());
             
             //Positionnement de la camera de gauche
             window->setView(player1->Cam());
@@ -206,7 +208,9 @@ int Level::game(sf::RenderWindow * window){
                 for(int j = 0; j < platform[i].n; j++)
                 window->draw(platform[i].Sprite(j));
             }
+            window->draw(player1->Gun().Form());
             window->draw(player1->Form());
+            window->draw(player2->Gun().Form());
             window->draw(player2->Form());
 
             //Positionnement de la camera de droite

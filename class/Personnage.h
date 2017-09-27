@@ -84,6 +84,16 @@ class Personnage
         sf::View Cam();
 
         /*!
+         *  \brief Accesseur du gun
+         *
+         *  Methode qui permet d'accéder en lecture au membre gun
+         *
+         *  \return retourne cam
+         * 
+         */
+        Weapon Gun();
+
+        /*!
          *  \brief Change la vitesse sur x
          *
          *  Procédure qui modifie la vitesse sur x

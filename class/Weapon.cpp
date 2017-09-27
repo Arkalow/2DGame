@@ -6,13 +6,33 @@
  */
 #include "../import.h"
 #include "Weapon.h"
-Weapon::Weapon(string ln){
+Weapon::Weapon(int x, int y, string ln){
      if(!img.loadFromFile(ln)){
         cout << "Error" << endl;
     }
     img.setSmooth(true);
-    this->sprite.setTexture(img);
+    this->form.setTexture(img);
+    //découpage du sprite
+    this->form.setTextureRect(sf::IntRect(237, 0, 237, 102));
+    this->form.setScale(0.2, 0.2);
+    this->Right();
 }
 Weapon::~Weapon(){
  
+}
+sf::Sprite Weapon::Form(){
+	return form;
+}
+void Weapon::setPosition(int x, int y){
+	this->form.setPosition(x + decaX, y + decaY);
+}
+void Weapon::Left(){
+	this->form.setTextureRect(sf::IntRect(0, 0, 237, 102));
+	this->decaX = -27;
+    this->decaY = 12;
+}
+void Weapon::Right(){
+	this->form.setTextureRect(sf::IntRect(237, 0, 237, 102));
+	this->decaX = 5;
+    this->decaY = 12;
 }

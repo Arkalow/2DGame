@@ -16,9 +16,10 @@
  {
      private:
         int x, y;
-
+        int decaX;
+        int decaY;
         //texture
-        sf::Sprite sprite; /*!< le sprite qui va être affiché*/
+        sf::Sprite form; /*!< le form qui va être affiché*/
         sf::Texture img; /*!< La feuille de style*/
      public:
      
@@ -29,7 +30,7 @@
           *
           *  \param string : lien de l'image
           */
-         Weapon(string);
+         Weapon(int, int, string);
          
          /*!
           *  \brief Destructeur
@@ -48,5 +49,29 @@
           * 
           */
          int show(sf::RenderWindow *);
+
+         /*!
+         *  \brief Accesseur de form
+         *
+         *  Methode qui permet d'accéder en lecture au membre form
+         *
+         *  \return retourne form
+         * 
+         */
+        sf::Sprite Form();
+
+        /*!
+         *  \brief change la position du gun
+         *
+         *  Procédure qui permet de positionner le gun sur l'écran
+         *
+         *  \param int : x
+         *  \param int : y
+         * 
+         */
+        void setPosition(int, int);
+
+        void Left();
+        void Right();
  };
  #endif

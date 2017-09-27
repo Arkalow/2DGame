@@ -12,7 +12,7 @@
 #include "Weapon.h"
 #include "Personnage.h"
 Personnage::Personnage(int x, int y, string ln, sf::Keyboard::Key jump, sf::Keyboard::Key left, sf::Keyboard::Key right, int position)
- : form(ln), cam(position), gun(ln){
+ : form(ln), cam(position), gun(x, y, "image/weapon/gun1.jpg"){
     this->x = x;
     this->y = y;
     form.setPosition(x, y);
@@ -47,15 +47,21 @@ void Personnage::move(float deplacementX, float deplacementY){
     x += deplacementX;
     y += deplacementY;
     form.setPosition(x, y);
+    gun.setPosition(x, y);
 }
 void Personnage::Left(int value){
     x -= value;
     form.playAnimation(1);
+    gun.Left();
 }
 void Personnage::Right(int value){
     x += value;
     form.playAnimation(2);
+    gun.Right();
 }
 sf::View Personnage::Cam(){
     return cam.updateCamera(x, y);
+}
+Weapon Personnage::Gun(){
+    return gun;
 }
