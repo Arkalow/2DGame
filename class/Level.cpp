@@ -126,23 +126,26 @@ void Level::deplacementPersonnage(Personnage * pers){
     deplacement = pers->physique.update();
     int dpX = deplacement.X();
     int dpY = deplacement.Y();
-    while(test(pers->X()+dpX, pers->Y()+dpY) == true){
-        if(dpX > 0){
-            dpX--;
-        }else if(dpX < 0){
-            dpX++;
-        }
-        if(dpY > 0){
-            dpY--;
 
-        }else if(dpY < 0){
-            dpY++;
-        }
+    // On test la trajectoire pixel par pixel
+    while(test(pers->X()+dpX, pers->Y()+dpY)){
+        if(dpX > 0) dpX--;
+        else if(dpX < 0) dpX++;
+
+        if(dpY > 0) dpY--; 
+        else if(dpY < 0) dpY++;
     }     
     pers->move(dpX, dpY);
-    if(test(pers->X(), pers->Y() + 1) == true){
+
+    // Si le personnage est sur une platform on le stop
+    if(test(pers->X(), pers->Y() + 1)){
         pers->setVitesseY(0);
         pers->setVitesseX(0);
+    }
+
+    // Si le personnage cogne sa tête on stop sa vitesse
+    if(test(pers->X(), pers->Y() - 1)){
+        pers->setVitesseY(0);
     }
 }
 

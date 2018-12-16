@@ -20,7 +20,6 @@ class Level
         sf::Sprite background; /*!< sprte du background*/
         Grid * map; /*!< grille qui contient l'emplacement des murs*/
         Personnage * player1;
-        Personnage * player2;
         void deplacementPersonnage(Personnage *); /*!< Colision du personnage*/
         void gestionClavier(Personnage *); /*!< gère les actions clavier et deplace le personnage*/
     public:
