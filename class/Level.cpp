@@ -175,30 +175,27 @@ int Level::game(sf::RenderWindow * window){
         while (window->pollEvent(event))
         {
             //fermeture de la fenetre
-            if (event.type == sf::Event::Closed)
-                window->close();
-            }
-            
-            deplacementPersonnage(player1);
-            
-            gestionClavier(player1);            
-          
-            //Positionnement de la camera de gauche
-            window->setView(player1->Cam());
-
-            /*AFFICHAGE*/
-            window->clear();
-            //positionnement du decor
-            updateBackground(player1->X(), player1->Y());
-            window->draw(Background());
-            for(int i = 0; i < NbPlatform(); i++){
-                for(int j = 0; j < platform[i].n; j++)
-                    window->draw(platform[i].Sprite(j));
-            }
-            window->draw(player1->Gun().Form());
-            window->draw(player1->Form());
-
-            window->display();
+            if (event.type == sf::Event::Closed) window->close();
         }
-        return 0;
+
+        gestionClavier(player1);            
+        deplacementPersonnage(player1);
+
+        //Positionnement de la camera
+        window->setView(player1->Cam());
+        /*AFFICHAGE*/
+        window->clear();
+        //positionnement du decor
+        updateBackground(player1->X(), player1->Y());
+        window->draw(Background());
+        for(int i = 0; i < NbPlatform(); i++){
+            for(int j = 0; j < platform[i].n; j++)
+                window->draw(platform[i].Sprite(j));
+        }
+        window->draw(player1->Gun().Form());
+        window->draw(player1->Form());
+
+        window->display();
     }
+    return 0;
+}
