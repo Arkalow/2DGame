@@ -54,12 +54,10 @@ void Level::init(){
 
     //Création du personnage
     player1 = new Personnage(8*BLOCK, 3*BLOCK, "image/sprite/perso1.png", sf::Keyboard::Z, sf::Keyboard::Q, sf::Keyboard::D, 0);
-    player2 = new Personnage(9*BLOCK, 4*BLOCK, "image/sprite/perso2.png", sf::Keyboard::O, sf::Keyboard::K, sf::Keyboard::M, 1);
 
     //Ajout d'une gravité au personnage
     Vecteur gravity(0, 3);
     player1->physique.add(gravity);
-    player2->physique.add(gravity);
 }
 
 /**
@@ -68,7 +66,6 @@ void Level::init(){
 Level::~Level(){
     delete[] platform;
     delete player1;
-    delete player2;
 }
 /**
 * @desc return nbPlatform
@@ -172,20 +169,12 @@ int Level::game(sf::RenderWindow * window){
                 window->close();
             }
             
-            
-            
             deplacementPersonnage(player1);
-            deplacementPersonnage(player2);
             
-            gestionClavier(player1);
-            gestionClavier(player2);
-            
-            
+            gestionClavier(player1);            
             
             /*AFFICHAGE*/
             window->clear();
-            //positionnement du decor
-            updateBackground(player2->X(), player2->Y());
 
             window->draw(Background());
             for(int i = 0; i < NbPlatform(); i++){
@@ -194,8 +183,6 @@ int Level::game(sf::RenderWindow * window){
             }
             window->draw(player1->Form());
             window->draw(player1->Gun().Form());
-            window->draw(player2->Form());
-            window->draw(player2->Gun().Form());
             
             //Positionnement de la camera de gauche
             window->setView(player1->Cam());
@@ -210,11 +197,7 @@ int Level::game(sf::RenderWindow * window){
             }
             window->draw(player1->Gun().Form());
             window->draw(player1->Form());
-            window->draw(player2->Gun().Form());
-            window->draw(player2->Form());
 
-            //Positionnement de la camera de droite
-            window->setView(player2->Cam());
             window->display();
         }
         return 0;

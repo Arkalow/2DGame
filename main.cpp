@@ -26,9 +26,9 @@ int main()
     BLOCK = 32;
     WIDTH = 2000;
     screenHEIGHT = 800;
-    screenWIDTH = 800;
+    screenWIDTH = 1000;
 
-    sf::RenderWindow window(sf::VideoMode(1600, 800), "Collision");
+    sf::RenderWindow window(sf::VideoMode(screenWIDTH, screenHEIGHT), "Collision");
     window.setFramerateLimit(60);
     window.setPosition(sf::Vector2i(192, 0));
     //import des textures
@@ -57,10 +57,10 @@ int main()
     Level lvl;
 
         //menu
-    Menu menuStart;
+   /* Menu menuStart;
     if(menuStart.show(&window) == 0){
         window.close();
-    }
+    }*/
 
     lvl.init();
 
