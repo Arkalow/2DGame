@@ -199,6 +199,7 @@ int Level::game(sf::RenderWindow * window){
             window->draw(player1->Form());
 
             window->display();
+            
         }
         return 0;
     }

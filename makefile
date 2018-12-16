@@ -1,5 +1,5 @@
-game: Animation.o Button.o Camera.o Grid.o Level.o Menu.o Personnage.o Physique.o Platform.o Vecteur.o Weapon.o main.o
-	g++ Animation.o Button.o Camera.o Grid.o Level.o Menu.o Personnage.o Physique.o Platform.o Vecteur.o Weapon.o main.o -o game -lsfml-graphics -lsfml-window -lsfml-system -Wall
+exe: Animation.o Button.o Camera.o Grid.o Level.o Menu.o Personnage.o Physique.o Platform.o Vecteur.o Weapon.o main.o
+	g++ Animation.o Button.o Camera.o Grid.o Level.o Menu.o Personnage.o Physique.o Platform.o Vecteur.o Weapon.o main.o -o exe -lsfml-graphics -lsfml-window -lsfml-system -Wall
 
 main.o: class/Weapon.h main.cpp import.h class/Animation.h class/Button.h class/Camera.h class/Grid.h class/Level.h class/Menu.h class/Personnage.h class/Physique.h class/Platform.h class/Vecteur.h class/Weapon.h
 	g++ -c main.cpp -Wall 
