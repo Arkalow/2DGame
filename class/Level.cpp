@@ -20,6 +20,7 @@
 Level::Level(){
 
 }
+
 void Level::init(){
     nbPlatform = 9;
     platform = new Platform[nbPlatform];
@@ -67,15 +68,18 @@ Level::~Level(){
     delete[] platform;
     delete player1;
 }
+
 /**
 * @desc return nbPlatform
 */
 int Level::NbPlatform(){
     return nbPlatform;
 }
+
 sf::Sprite Level::Background(){
     return background;
 }
+
 void Level::updateBackground(int x, int y){
     if(x > screenWIDTH /2){
         background.setPosition(x - screenWIDTH /2, 0);
@@ -83,9 +87,11 @@ void Level::updateBackground(int x, int y){
         background.setPosition(0, 0);
     }
 }
+
 int Level::operator()(int x, int y){
     return map->G(x, y);
 }
+
 bool Level::test(int x, int y){//Ya un mur ???
     if(map->G(x/BLOCK, y/BLOCK) == 1){//sur un mur
         return true;
@@ -113,6 +119,7 @@ bool Level::test(int x, int y){//Ya un mur ???
         }
     }
 }
+
 void Level::deplacementPersonnage(Personnage * pers){
     /*  DEPLACEMENT */
     Vecteur deplacement;
@@ -139,7 +146,6 @@ void Level::deplacementPersonnage(Personnage * pers){
     }
 }
 
-    /*GESTION CLAVIER*/
 void Level::gestionClavier(Personnage * pers){
     if(sf::Keyboard::isKeyPressed(pers->jump)){//JUMP
         if(test(pers->X(), pers->Y() + 1) == true){
@@ -157,6 +163,7 @@ void Level::gestionClavier(Personnage * pers){
         }
     }
 }
+
 int Level::game(sf::RenderWindow * window){
     window->clear();
     while (window->isOpen())
@@ -172,34 +179,23 @@ int Level::game(sf::RenderWindow * window){
             deplacementPersonnage(player1);
             
             gestionClavier(player1);            
-            
-            /*AFFICHAGE*/
-            window->clear();
-
-            window->draw(Background());
-            for(int i = 0; i < NbPlatform(); i++){
-                for(int j = 0; j < platform[i].n; j++)
-                window->draw(platform[i].Sprite(j));
-            }
-            window->draw(player1->Form());
-            window->draw(player1->Gun().Form());
-            
+          
             //Positionnement de la camera de gauche
             window->setView(player1->Cam());
 
             /*AFFICHAGE*/
+            window->clear();
             //positionnement du decor
             updateBackground(player1->X(), player1->Y());
             window->draw(Background());
             for(int i = 0; i < NbPlatform(); i++){
                 for(int j = 0; j < platform[i].n; j++)
-                window->draw(platform[i].Sprite(j));
+                    window->draw(platform[i].Sprite(j));
             }
             window->draw(player1->Gun().Form());
             window->draw(player1->Form());
 
             window->display();
-            
         }
         return 0;
     }
