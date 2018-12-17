@@ -24,11 +24,11 @@ sf::Sprite Weapon::Form(){
 	return form;
 }
 void Weapon::setPosition(int x, int y){
-	this->form.setPosition(x + decaX, y + decaY);
+	this->form.setPosition(x + this->decaX, y + this->decaY);
 }
 void Weapon::Left(){
 	this->form.setTextureRect(sf::IntRect(0, 0, 237, 102));
-	this->decaX = -27;
+	this->decaX = -1 * BLOCK + 10;
     this->decaY = 12;
 }
 void Weapon::Right(){

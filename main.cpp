@@ -29,7 +29,8 @@ int main()
     screenWIDTH = 800;
 
     sf::RenderWindow window(sf::VideoMode(screenWIDTH, screenHEIGHT), "Collision");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(50);
+    window.setVerticalSyncEnabled(true); 
     window.setPosition(sf::Vector2i(192, 0));
     //import des textures
     texture[0].loadFromFile("image/platform/png/Tiles/0.png");
